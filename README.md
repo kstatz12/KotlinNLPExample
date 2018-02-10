@@ -1,4 +1,1 @@
 # KotlinNLPExample
-# KotlinNLPExample
-# KotlinNLPExample
-# KotlinNLPExample
