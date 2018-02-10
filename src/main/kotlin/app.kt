@@ -11,10 +11,9 @@ fun main(args: Array<String>){
     val sentences = SentenceExtractor().extract(text, nlp)
     val entities = NERProcessor().processSentences(sentences)
     val relations = TripleProcessor().processSentences(sentences)
-    val processedEntities = PostProcessor().removeDuplicates(entities)
-    val results = ResultResolver().getResults(processedEntities, relations)
+    val results = ResultResolver().getResults(entities, relations)
     CoreRefProcessor().getCoreRefs(text,nlp)
-    for(result in results){
+    for(result in results.distinctBy { x->x.entityValue }){
         println("Entity Found: ${result.entityValue} of type ${result.entityType}")
         if(result.triples.count() > 0){
             println("Found The Following Relations")
