@@ -17,6 +17,11 @@ class FluentPropertyBuilder {
         return this
     }
 
+    fun withCoreReference() : FluentPropertyBuilder{
+        props.add("parse, mention, coref")
+        return this
+    }
+
     fun build() : Properties {
         val p = props.toTypedArray().joinToString<String>()
         val properties = Properties()
