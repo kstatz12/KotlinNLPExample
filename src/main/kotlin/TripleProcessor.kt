@@ -4,7 +4,7 @@ import edu.stanford.nlp.util.CoreMap
 
 class TripleProcessor {
     fun processSentences(sentences: List<CoreMap>): MutableList<RelationTriple> {
-        var relations = mutableListOf<RelationTriple>()
+        val relations = mutableListOf<RelationTriple>()
         sentences
                 .map { it.get(NaturalLogicAnnotations.RelationTriplesAnnotation::class.java).toMutableList() }
                 .forEach { relations.addAll(it) }

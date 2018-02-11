@@ -1,5 +1,4 @@
 import edu.stanford.nlp.ling.CoreAnnotations
-import edu.stanford.nlp.ling.CoreLabel
 import edu.stanford.nlp.util.CoreMap
 
 
@@ -18,7 +17,7 @@ class NERProcessor {
     private fun processSentence(sentence: CoreMap, tokens: MutableList<EmbeddedToken>, sb: StringBuilder) {
 
         var previousToken = "O"
-        var currentToken = "O"
+        var currentToken : String
         var newToken = true
         for (token in sentence.get(CoreAnnotations.TokensAnnotation::class.java)) {
             currentToken = token.get(CoreAnnotations.NamedEntityTagAnnotation::class.java)

@@ -8,7 +8,7 @@ class ResultResolver {
     }
 
     fun resolve(entity: EmbeddedToken, triples: List<RelationTriple>, mentions: List<Mention>) : Result{
-        var entityTriples = triples.filter { x-> x.subjectLemmaGloss() == entity.Value }
+        val entityTriples = triples.filter { x-> x.subjectLemmaGloss() == entity.Value }
         val entityMentions = mentions.filter { x->x.spanToString() == entity.Value }
         return Result(entity.Value, entity.Key, entityTriples, entityMentions)
     }

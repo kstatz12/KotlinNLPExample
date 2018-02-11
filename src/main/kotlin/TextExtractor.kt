@@ -6,8 +6,8 @@ import java.io.InputStream
 
 class TextExtractor {
     fun extract(obj: S3Object): String {
-        var handler = BodyContentHandler()
-        var metaData = Metadata()
+        val handler = BodyContentHandler()
+        val metaData = Metadata()
         AutoDetectParser().parse(obj.objectContent, handler, metaData)
         return handler.toString()
     }
