@@ -3,13 +3,11 @@ import java.util.*
 
 fun main(args: Array<String>){
 
-    val props = Properties()
-    props["annotators"] = "tokenize, ssplit, pos, lemma, ner, regexner, depparse, natlog, openie, parse, mention"
-    var nlp = StanfordCoreNLPFactory().create(props)
+    val config = FluentPipleLineConfiguration().withNamedEntityRecognition().withOpenIe().build()
+    var nlp = StanfordCoreNLPFactory().create(config.props)
     val obj = AmazonS3ClientBuilder.defaultClient()
-            .getObject("test-nlp-bucket", "Partnership Agreement.pdf")
+            .getObject("test-nlp-bucket", "ECHO_News_2017_11_3_Corporate_Releases.pdf")
     val text = TextExtractor().extract(obj)
-    val result = ResultFactory(nlp).create(text)
+    val result = ResultFacade(nlp, config).getResults(text)
     ResultPrinter().print(result)
-
 }
