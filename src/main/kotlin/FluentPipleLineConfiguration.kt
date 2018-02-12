@@ -50,7 +50,7 @@ class FluentPipleLineConfiguration {
         var prop = Properties()
         prop["annotators"] = propString
         if(isNer){
-            prop.setProperty("ner.model", "edu/stanford/nlp/models/ner/english.conll.4class.distsim.crf.ser.gz")
+            prop.setProperty("ner.model", "edu/stanford/nlp/models/ner/english.all.3class.distsim.crf.ser.gz,edu/stanford/nlp/models/ner/english.muc.7class.distsim.crf.ser.gz,edu/stanford/nlp/models/ner/english.conll.4class.distsim.crf.ser.gz")
         }
         return PipelineConfiguration(prop, isNer, isOpenIe, isMentions, isRelations)
     }

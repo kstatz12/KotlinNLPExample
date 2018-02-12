@@ -18,8 +18,6 @@ apply plugin: "io.spring.dependency-management"
 
 sourceCompatibility = 1.8
 
-
-
 repositories {
     mavenCentral()
 }
@@ -41,9 +39,24 @@ dependencies {
     compile 'me.xdrop:fuzzywuzzy:1.1.9'
 }
 
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin/'
+    test.java.srcDirs += 'src/test/kotlin/'
+}
+
+
 compileKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.skunkworks.nlp-1.0-SNAPSHOT.AppKt'
+    }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+}
+
+
